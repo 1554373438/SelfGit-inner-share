@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+
+<head>
+  <meta charset="UTF-8">
+  <title>登录页</title>
+  <meta name="description" content="csyy">
+  <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="format-detection" content="telephone=no">
+  <!-- safari full screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta id="apple-mobile-web-app-title" name="apple-mobile-web-app-title" content="unifi">
+  <!--build:css css/login.min.css-->
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <!--endbuild-->
+</head>
+
+<body id="app" class="full-height" v-cloak>
+    <section class="login-form">
+      <div class="tip-wrapper">
+        <img src="images/tip.png" alt="">
+      </div>
+      <form>
+        <div class="list">
+          <div class="item item-input">
+            <span class="input-label">帐号:</span>
+            <input type="text" maxlength="30" value="" v-model="user.name">
+          </div>
+          <div class="item item-input">
+            <span class="input-label">密码:</span>
+            <input type="{{drop?'text':'password'}}" maxlength="20" value="" v-model="user.pwd">
+            <i class="icon " v-bind:class="{'icon-eye-on':drop, 'icon-eye-off': !drop}" v-on:click="secondSelect()"></i>
+          </div>
+        </div>
+      </form>
+      <button class="button" v-on:click="login()" v-bind:class="{'disabled':!(user.name && user.pwd)}">登录</button>
+      <div class="footer">
+        <!-- <span class="light">忘记密码</span>|<span class="">马上注册</span> -->
+      </div>
+    </section>
+   
+    <div id="loading" class="row row-center" v-show="showLoading">
+      <div class="inner">
+        <img src="images/loading.gif">
+      </div>
+    </div>
+     <div id="toastr" class="row row-center" :class="{active: toastrInfo}">
+      <p>{{toastrInfo}}</p>
+    </div>
+
+  
+  <!--build:js js/vendor.min.js -->
+  <script src="js/zepto.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/md5.js"></script>
+  <script src="js/util.js"></script>
+  <!--endbuild-->
+  <!--build:js js/login.min.js-->
+  <script src="js/login.js"></script>
+  <!--endbuild-->
+</body>
+
+</html>

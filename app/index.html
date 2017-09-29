@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>人生的900个月</title>
+  <meta name="format-detection" content="telephone=no">
+  <!-- safari full screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta id="apple-mobile-web-app-title" name="apple-mobile-web-app-title" content="诺诺镑客">
+  <!--build:css css/index.min.css-->
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <!--endbuild-->
+  <script>
+  //声明_czc对象:
+  var _czc = _czc || [];
+  //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+  _czc.push(["_setAccount", "1260487635"]);
+  </script>
+  <script type="text/javascript" src="https://m.nonobank.com/nonoutil/js/tongdun.js"></script> 
+</head>
+
+<body id="app" class="box-vertical" v-cloak :class="{'keyboard-on':keyBoardOn}">
+  <swiper id="swiper_vertical" :pagination-visible="false"  @slide-change-end="onSlideChangeEnd" >
+    <div class="swiper-slide">
+      <i class="icon icon-arrow"></i>
+    </div>
+    <div class="swiper-slide">
+      <i class="icon icon-arrow"></i>
+    </div>
+    <div class="swiper-slide">
+      <i class="icon icon-arrow"></i>
+    </div>
+    <div class="swiper-slide">
+      <i class="icon icon-arrow"></i>
+    </div>
+      
+    <div class="swiper-slide">
+      <div class="nono-bg" :class="{'move-up':showForm}">
+        <div class="nono-logo"><img src="images/nono_logo.png" alt="" width="96"></div>
+        <div class="nono-text">
+          <p><span>赚钱</span>的事留给<span>诺诺</span></p>
+          <p>把<span>时间</span>留给<span>亲友</span></p>
+        </div>
+      </div>
+      <form class="item-wrap margin-horizontal  margin-vertical padding-horizontal" :class="{'slide-up':showForm}" name="regForm">
+        <div class="item">
+          <input type="tel" placeholder="请输入手机号" maxlength="11" v-model="regData.phone" />
+        </div>
+        <div class="item-group" :class="{'slide-left': sendMessageSuccess}">
+          <div class="item row row-no-padding safecode-box">
+            <div class="col">
+              <input type="text" placeholder="请输入图形验证码" maxlength="4" value="" v-model="regData.safeCode" />
+            </div>
+            <div class="col-40" @click="getCodeImg">
+              <img class="full-image" :src="regData.codeImgPath">
+            </div>
+          </div>
+          <div class="item row row-no-padding sendcode-box">
+            <div class="col">
+              <input type="tel" placeholder="请输入短信验证码" maxlength="4" value="" v-model="regData.msgCode" />
+            </div>
+            <div class="col-40 button-small " v-bind:class="{'disabled':countdown.active}" @click="sendMessage">
+              <span>
+                <b v-if="!countdown.active"  v-text="countdown.text"></b>
+                <b v-else >{{countdown.time}}s</b>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <input type="password" placeholder="设置密码（含数字及字母，至少6位）" maxlength="16" value="" v-model="regData.pwd" />
+          <img src="">
+        </div>
+        <p class="item-icon-left margin-bottom middle">
+          <i class="icon-check" :class="{'selected': agreed}" @click="agreedRules"></i> 我已阅读和同意<span  @click="showProtocol('fwxy')">《服务协议》</span>和<span @click="showProtocol('ystk')">《隐私条款》</span>
+        </p>
+      </form>
+      <div v-if="!hasNextPage" class="button button-purple" @click="share">立即分享</div>
+      <div v-if="hasNextPage && showBtn" class="button button-purple" @click="showRegForm">立即赚钱</div>
+    </div>
+  </swiper>
+  <div id="loading" class="row row-center" v-show="showLoading">
+    <div class="inner">
+      <img src="images/loading.gif">
+    </div>
+  </div>
+  <div id="toastr" class="row row-center" :class="{active: toastrInfo}">
+    <p>{{toastrInfo}}</p>
+  </div>
+  <div id="shareMask" class="row row-center" v-show="showShareMask" @click="share('hide')">
+    <p class="mask-text">点击右上角分享</p>
+  </div>
+  <div id="rule" v-show="showRule" @click="hideProtocol">
+      <div class="content" v-html="ruleHtml"></div>
+  </div>
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js "></script>
+  <!--build:js js/vendor.min.js -->
+  <script src="js/zepto.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/md5.js"></script>
+  <script src="js/util.js"></script>
+  <!--endbuild-->
+  <!--build:js js/main.min.js-->
+  <script src="js/vue-swiper.js"></script>
+  <script src="js/index.js"></script>
+  <!--endbuild-->
+  <script src="js/piwik.js"></script>
+  <script>
+  var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+  document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1260487635'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260487635' %3E%3C/script%3E"));
+  </script>
+</body>
+
+</html>
